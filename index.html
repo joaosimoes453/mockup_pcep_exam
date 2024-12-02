@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mockup Exame PCEP</title>
     <style>
-        /* Definir a fonte padrão */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f7fa;
@@ -14,14 +13,12 @@
             color: #333;
         }
 
-        /* Título principal */
         h1 {
             text-align: center;
             margin: 20px 0;
             color: #2c3e50;
         }
 
-        /* Container principal para o formulário */
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -31,7 +28,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Estilo para as perguntas */
         .question {
             margin-bottom: 20px;
         }
@@ -50,7 +46,6 @@
             font-family: 'Courier New', Courier, monospace;
         }
 
-        /* Estilo para as opções */
         input[type="radio"] {
             margin-right: 10px;
         }
@@ -61,7 +56,6 @@
             font-size: 1em;
         }
 
-        /* Botão de envio */
         button {
             background-color: #27ae60;
             color: white;
@@ -79,7 +73,6 @@
             background-color: #2ecc71;
         }
 
-        /* Estilo para o resultado */
         #result {
             display: none;
             margin-top: 30px;
@@ -95,16 +88,6 @@
             color: #2c3e50;
         }
 
-        /* Resposta correta/errada */
-        .correct {
-            color: green;
-        }
-
-        .incorrect {
-            color: red;
-        }
-
-        /* Estilo para a exibição das perguntas em dispositivos móveis */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -123,6 +106,9 @@
 
 <div class="container">
     <form id="quizForm">
+        <!-- Seção 1: Múltipla Escolha -->
+        <h2>Seção 1: Múltipla Escolha (20 questões - 40 pontos)</h2>
+
         <!-- Pergunta 1 -->
         <div class="question">
             <label for="q1">1. Qual a saída do seguinte código?</label><br>
@@ -132,24 +118,72 @@
             <input type="radio" id="q1c" name="q1" value="C"> C) 3<br>
             <input type="radio" id="q1d" name="q1" value="D"> D) Erro<br>
         </div>
-        
+        <p>Resposta: A) 2</p>
+
         <!-- Pergunta 2 -->
         <div class="question">
-            <label for="q2">2. Qual é o resultado da expressão len("Python")?</label><br>
-            <input type="radio" id="q2a" name="q2" value="A"> A) 5<br>
-            <input type="radio" id="q2b" name="q2" value="B"> B) 6<br>
-            <input type="radio" id="q2c" name="q2" value="C"> C) 7<br>
-            <input type="radio" id="q2d" name="q2" value="D"> D) 8<br>
+            <label for="q2">2. Qual o tipo de dado retornado pela função type() em Python?</label><br>
+            <input type="radio" id="q2a" name="q2" value="A"> A) String<br>
+            <input type="radio" id="q2b" name="q2" value="B"> B) Tipo de dado do argumento<br>
+            <input type="radio" id="q2c" name="q2" value="C"> C) Booleano<br>
+            <input type="radio" id="q2d" name="q2" value="D"> D) Nenhuma das alternativas<br>
         </div>
+        <p>Resposta: B) Tipo de dado do argumento</p>
 
         <!-- Pergunta 3 -->
         <div class="question">
-            <label for="q3">3. Qual das alternativas é a sintaxe correta para declarar uma variável em Python?</label><br>
-            <input type="radio" id="q3a" name="q3" value="A"> A) var x = 10<br>
-            <input type="radio" id="q3b" name="q3" value="B"> B) x = 10<br>
-            <input type="radio" id="q3c" name="q3" value="C"> C) int x = 10<br>
-            <input type="radio" id="q3d" name="q3" value="D"> D) declare x = 10<br>
+            <label for="q3">3. Qual comando é usado para importar um módulo em Python?</label><br>
+            <input type="radio" id="q3a" name="q3" value="A"> A) importar math<br>
+            <input type="radio" id="q3b" name="q3" value="B"> B) import math<br>
+            <input type="radio" id="q3c" name="q3" value="C"> C) módulo math<br>
+            <input type="radio" id="q3d" name="q3" value="D"> D) use math<br>
         </div>
+        <p>Resposta: B) import math</p>
+
+        <!-- Pergunta 4 -->
+        <div class="question">
+            <label for="q4">4. Qual é o resultado do seguinte código?</label><br>
+            <pre>lista = [1, 2, 3]; lista.append(4); print(len(lista))</pre>
+            <input type="radio" id="q4a" name="q4" value="A"> A) 3<br>
+            <input type="radio" id="q4b" name="q4" value="B"> B) 4<br>
+            <input type="radio" id="q4c" name="q4" value="C"> C) 5<br>
+            <input type="radio" id="q4d" name="q4" value="D"> D) 2<br>
+        </div>
+        <p>Resposta: B) 4</p>
+
+        <!-- Pergunta 5 -->
+        <div class="question">
+            <label for="q5">5. Qual a saída do seguinte código?</label><br>
+            <pre>x = [1, 2, 3]; x[0] = 5; print(x)</pre>
+            <input type="radio" id="q5a" name="q5" value="A"> A) [5, 2, 3]<br>
+            <input type="radio" id="q5b" name="q5" value="B"> B) [1, 2, 3]<br>
+            <input type="radio" id="q5c" name="q5" value="C"> C) [1, 5, 3]<br>
+            <input type="radio" id="q5d" name="q5" value="D"> D) [1, 2, 5]<br>
+        </div>
+        <p>Resposta: A) [5, 2, 3]</p>
+
+        <!-- Continuar com as outras perguntas da Seção 1... -->
+
+        <!-- Seção 2: Verdadeiro ou Falso -->
+        <h2>Seção 2: Verdadeiro ou Falso (10 questões - 20 pontos)</h2>
+
+        <!-- Pergunta 21 -->
+        <div class="question">
+            <label for="q21">21. Em Python, a função range(5) cria uma lista de 5 números inteiros, começando de 0.</label><br>
+            <input type="radio" id="q21v" name="q21" value="V"> Verdadeiro<br>
+            <input type="radio" id="q21f" name="q21" value="F"> Falso<br>
+        </div>
+        <p>Resposta: Falso</p>
+
+        <!-- Pergunta 22 -->
+        <div class="question">
+            <label for="q22">22. As tuplas são mutáveis em Python, ou seja, você pode alterar seus elementos após a criação.</label><br>
+            <input type="radio" id="q22v" name="q22" value="V"> Verdadeiro<br>
+            <input type="radio" id="q22f" name="q22" value="F"> Falso<br>
+        </div>
+        <p>Resposta: Falso</p>
+
+        <!-- Continuar com as outras perguntas da Seção 2... -->
 
         <!-- Botão de envio -->
         <button type="button" onclick="submitQuiz()">Enviar Respostas</button>
@@ -157,27 +191,45 @@
 
     <!-- Resultado -->
     <div id="result">
-        <h2>Resultado:</h2>
-        <p id="score"></p>
+        <p id="score">Você obteve X pontos!</p>
     </div>
 </div>
 
 <script>
     function submitQuiz() {
         let score = 0;
+        const totalQuestions = 30; // Total de perguntas
 
-        // Pergunta 1
-        if (document.getElementById('q1a').checked) { score += 1; }
+        // Perguntas da Seção 1: Múltipla Escolha
+        const answersSection1 = {
+            q1: 'A', q2: 'B', q3: 'B', q4: 'B', q5: 'A'
+            // Continue com as demais respostas da Seção 1...
+        };
 
-        // Pergunta 2
-        if (document.getElementById('q2b').checked) { score += 1; }
+        // Perguntas da Seção 2: Verdadeiro ou Falso
+        const answersSection2 = {
+            q21: 'F', q22: 'F'
+            // Continue com as demais respostas da Seção 2...
+        };
 
-        // Pergunta 3
-        if (document.getElementById('q3b').checked) { score += 1; }
+        // Verificar respostas
+        Object.keys(answersSection1).forEach((question) => {
+            const selectedAnswer = document.querySelector(`input[name="${question}"]:checked`);
+            if (selectedAnswer && selectedAnswer.value === answersSection1[question]) {
+                score++;
+            }
+        });
 
-        // Exibir o resultado
-        document.getElementById('score').innerText = "Sua pontuação é: " + score + " de 3.";
-        document.getElementById('result').style.display = "block";
+        Object.keys(answersSection2).forEach((question) => {
+            const selectedAnswer = document.querySelector(`input[name="${question}"]:checked`);
+            if (selectedAnswer && selectedAnswer.value === answersSection2[question]) {
+                score++;
+            }
+        });
+
+        // Exibir resultado
+        document.getElementById("score").textContent = `Você obteve ${score} pontos!`;
+        document.getElementById("result").style.display = "block";
     }
 </script>
 
