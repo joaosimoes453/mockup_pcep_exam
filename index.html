@@ -199,6 +199,7 @@
     function submitQuiz() {
         let score = 0;
         const totalQuestions = 30; // Total de perguntas
+        const passingScore = 21; // 70% de 30 perguntas
 
         // Perguntas da Seção 1: Múltipla Escolha
         const answersSection1 = {
@@ -228,7 +229,14 @@
         });
 
         // Exibir resultado
-        document.getElementById("score").textContent = `Você obteve ${score} pontos!`;
+        let resultMessage = '';
+        if (score >= passingScore) {
+            resultMessage = `Parabéns! Você obteve ${score} pontos e foi aprovado!`;
+        } else {
+            resultMessage = `Você obteve ${score} pontos. Precisa estudar mais para alcançar a aprovação.`;
+        }
+
+        document.getElementById("score").textContent = resultMessage;
         document.getElementById("result").style.display = "block";
     }
 </script>
