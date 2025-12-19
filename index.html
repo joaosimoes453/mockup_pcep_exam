@@ -107,7 +107,7 @@
 <div class="container">
     <form id="quizForm">
         <!-- Seção 1: Múltipla Escolha -->
-        <h2>Seção 1: Múltipla Escolha (20 questões - 40 pontos)</h2>
+        <h2>Seção 1: Múltipla Escolha (30 questões - 30 pontos)</h2>
 
         <!-- Pergunta 1 -->
         <div class="question">
@@ -388,55 +388,73 @@ if 10 > 5
 
     <!-- Resultado -->
     <div id="result">
-        <p id="score">Você obteve X pontos!</p>
+      <p id="score"></p>
+      <p id="percent"></p>
+      <p id="wrong"></p>
     </div>
 </div>
 
 <script>
-    function submitQuiz() {
-        let score = 0;
-        const totalQuestions = 30; // Total de perguntas
-        const passingScore = 21; // 70% de 30 perguntas
+  function submitQuiz() {
+    let score = 0;
 
-        // Perguntas da Seção 1: Múltipla Escolha
-        const answersSection1 = {
-            q1: 'A', q2: 'B', q3: 'B', q4: 'B', q5: 'A', q6: 'B', q7: 'B', q8: 'B', q9: 'B', q10: 'B', q11: 'A', q12: 'C', q13: 'B', q14: 'D',
-            q15: 'D', q16: 'C', q17: 'A', q18: 'B', q19: 'A', q20: 'B'
-            // Continue com as demais respostas da Seção 1...
-        };
+    const answersSection1 = {
+      q1: 'A', q2: 'B', q3: 'B', q4: 'B', q5: 'A', q6: 'B', q7: 'B', q8: 'B', q9: 'B',
+      q10: 'B', q11: 'A', q12: 'C', q13: 'B', q14: 'D', q15: 'D', q16: 'C', q17: 'A',
+      q18: 'B', q19: 'A', q20: 'B'
+    };
 
-        // Perguntas da Seção 2: Verdadeiro ou Falso
-        const answersSection2 = {
-            q21: 'F', q22: 'F', q23: 'V', q24: 'F', q25: 'V', q26: 'V', q27: 'F', q28: 'V', q29: 'F', q30: 'V'
-            // Continue com as demais respostas da Seção 2...
-        };
+    const answersSection2 = {
+      q21: 'F', q22: 'F', q23: 'V', q24: 'F', q25: 'V', q26: 'V', q27: 'F', q28: 'V',
+      q29: 'F', q30: 'V'
+    };
 
-        // Verificar respostas
-        Object.keys(answersSection1).forEach((question) => {
-            const selectedAnswer = document.querySelector(`input[name="${question}"]:checked`);
-            if (selectedAnswer && selectedAnswer.value === answersSection1[question]) {
-                score++;
-            }
-        });
+    const allAnswers = { ...answersSection1, ...answersSection2 };
+    const totalQuestions = Object.keys(allAnswers).length;
+    const passingScore = Math.ceil(totalQuestions * 0.7);
 
-        Object.keys(answersSection2).forEach((question) => {
-            const selectedAnswer = document.querySelector(`input[name="${question}"]:checked`);
-            if (selectedAnswer && selectedAnswer.value === answersSection2[question]) {
-                score++;
-            }
-        });
+    const wrongQuestions = [];
+    const unansweredQuestions = [];
 
-        // Exibir resultado
-        let resultMessage = '';
-        if (score >= passingScore) {
-            resultMessage = `Parabéns! Tiveste ${score} pontos e foste aprovado!`;
-        } else {
-            resultMessage = `Tiveste ${score} pontos. Com algum estudo chegas lá!.`;
-        }
+    Object.keys(allAnswers).forEach((question) => {
+      const selected = document.querySelector(`input[name="${question}"]:checked`);
 
-        document.getElementById("score").textContent = resultMessage;
-        document.getElementById("result").style.display = "block";
-    }
+      if (!selected) {
+        unansweredQuestions.push(question);
+        return;
+      }
+
+      if (selected.value === allAnswers[question]) {
+        score++;
+      } else {
+        wrongQuestions.push(question);
+      }
+    });
+
+    const percent = Math.round((score / totalQuestions) * 100);
+
+    // Mensagem principal
+    const resultMessage = score >= passingScore
+      ? `Parabéns! Tiveste ${score} / ${totalQuestions} e foste aprovado.`
+      : `Tiveste ${score} / ${totalQuestions}. Com algum estudo chegas lá.`;
+
+    // Formatar lista tipo: Q4, Q12, ...
+    const formatQs = (arr) =>
+      arr.length ? arr.map(q => "Q" + q.replace("q", "")).join(", ") : "Nenhuma";
+
+    // Escrever no UI
+    document.getElementById("score").textContent = resultMessage;
+    document.getElementById("percent").textContent = `Percentagem: ${percent}%`;
+
+    const wrongText = `Erradas: ${formatQs(wrongQuestions)}`;
+    const unansweredText = `Não respondidas: ${formatQs(unansweredQuestions)}`;
+
+    // Se não respondidas, também mostro (ajuda em sala)
+    document.getElementById("wrong").textContent =
+      unansweredQuestions.length ? `${wrongText} | ${unansweredText}` : wrongText;
+
+    document.getElementById("result").style.display = "block";
+  }
 </script>
 
 </body>
